@@ -1,1 +1,6 @@
-<h1>Hello, World!</h1>
+<h1>Hosted Events</h1>
+<% if @hosted_events.size.zero? %>
+  <p>You aren't hosting anything yet. Get a party started by clicking "Create New Event"!</p>
+<% else %>
+  <%= render @hosted_events %>
+<% end %>

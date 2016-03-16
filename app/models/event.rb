@@ -6,10 +6,10 @@ class Event < ActiveRecord::Base
   has_many :items, through: :event_items
 
   def assigned_items
-    self.event_items.where.not(assigned_person: nil)
+    items.joins(:event_items).where.not(event_items: {assigned_person_id: nil}).uniq
   end
 
   def unassigned_items
-    self.event_items.where(assigned_person: nil)
+    items.joins(:event_items).where(event_items: {assigned_person_id: nil})
   end
 end

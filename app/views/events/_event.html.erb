@@ -1,3 +1,16 @@
-<p>Title: <%= event.title %></p>
-<p>Location: <%= event.location %></p>
-<p>Date and Time: <%= event.start_time.strftime("%A, %B %d, %Y at %l%p") %></p>
+<div class="col-md-4">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4><%= event.title %></h4>
+    </div>
+    <div class="panel-body">
+      <p><strong>Location:</strong> <%= event.location %></p>
+      <p><strong>Date and Time:</strong> <%= event.start_time.strftime("%A, %B %d, %Y at %l%p") %></p>
+      <ul class="list-inline">
+        <li><%= link_to "Details", event_path(event), class: "btn btn-sm btn-default" %></li>
+        <li><%= link_to "Edit", edit_event_path(event), class: "btn btn-sm btn-default" %></li>
+        <li><%= link_to "Delete", event_path(event), method: :delete, class: "btn btn-sm btn-default" %></li>
+      </ul>
+    </div>
+  </div>
+</div>

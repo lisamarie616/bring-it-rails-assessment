@@ -1,0 +1,7 @@
+<h2 class="page-header">Event Details</h2>
+<%= render 'event_simple', event: @event %>
+<h2 class="page-header">Who's Bringing What</h2>
+<% @event.assigned_items.each do |item| %>
+  <li><%= item.item_name %>: <%= item.assigned_person_name %></li>
+<% end %>
+<h2 class="page-header">Items Still Needed</h2>

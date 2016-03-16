@@ -4,4 +4,12 @@ class Event < ActiveRecord::Base
   belongs_to :host, :class_name => "User"
   has_many :event_items
   has_many :items, through: :event_items
+
+  def assigned_items
+    self.event_items.where.not(assigned_person: nil)
+  end
+
+  def unassigned_items
+    self.event_items.where(assigned_person: nil)
+  end
 end

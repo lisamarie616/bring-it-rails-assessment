@@ -10,12 +10,14 @@ class EventsController < ApplicationController
   end
 
   def new
+    @event = Event.new
   end
 
   def edit
   end
 
   def create
+    raise params.inspect
   end
 
   def update

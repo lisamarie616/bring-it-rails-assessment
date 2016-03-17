@@ -1,0 +1,8 @@
+<div class="col-sm-8">
+  <%= bootstrap_form_for(@event, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-6") do |f| %>
+    <%= f.text_field :title, label: "Event Title" %>
+    <%= f.text_field :location %>
+    <%= f.datetime_field :start_time, help: "ex: \"8/6/1991 at 1:30pm\" OR \"next Saturday at noon\"" %>
+    <%= f.submit %>
+  <% end %>
+</div>

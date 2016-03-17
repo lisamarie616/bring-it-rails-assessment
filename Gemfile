@@ -28,9 +28,11 @@ gem 'bootswatch-rails'
 gem 'bootstrap_form'
 
 gem 'devise'
+gem 'devise_invitable'
 gem 'omniauth-facebook'
 
 gem 'chronic'
+gem 'figaro'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

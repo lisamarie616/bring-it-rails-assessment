@@ -1,12 +1,12 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :recoverable
-  devise :database_authenticatable, :registerable,
+  devise :invitable, :database_authenticatable, :registerable,
          :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
 
-  has_many :invitations, :foreign_key => :guest_id
-  has_many :invited_events, :through => :invitations
+  has_many :event_users, :foreign_key => :guest_id
+  has_many :invited_events, :through => :event_users
   has_many :hosted_events, :foreign_key => "host_id", :class_name => "Event"
   has_many :event_items, :foreign_key => :assigned_person_id
 

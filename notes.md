@@ -9,6 +9,8 @@ x format sign up and sign in views
 x integrate flash messages with devise and bootstrap
 x add fields to user model (first_name and last_name)
 x add filter methods to event and item
+x add devise_invitable so users can invite other users
+x add figaro to store environment variables (needed for action mailer)
 
 * on the event new page, need to add section for items for the event and guests to invite
 * on the event show page, make items needed checkboxes that the user can select and it will then assign that item for that event to the user

@@ -1,9 +1,12 @@
 <h2 class="page-header">Event Details</h2>
+
 <%= render 'event_simple', event: @event %>
+
 <h2 class="page-header">Who's Bringing What</h2>
 <% @event.assigned_items.each do |item| %>
   <li>(<%= item.assigned_persons.count %>) <%= item.name.titleize %>: <%= item.people_bringing %></li>
 <% end %>
+
 <h2 class="page-header">Still Needed <small>select item(s) to bring:</small></h2>
 <% @event.unassigned_items.each do |item| %>
   <li><%= item.name %></li>

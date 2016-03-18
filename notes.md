@@ -11,8 +11,11 @@ x add fields to user model (first_name and last_name)
 x add filter methods to event and item
 x add devise_invitable so users can invite other users
 x add figaro to store environment variables (needed for action mailer)
+x added section for guests on event new page
 
-* on the event new page, need to add section for items for the event and guests to invite
+* on the event new page, need to add section for items for the event
 * on the event show page, make items needed checkboxes that the user can select and it will then assign that item for that event to the user
 * create static home page
-* do i want to list invited events on the same page as hosted events?
+* do i want to list invited events on the same page as hosted events? yes, probably...handle this
+* add validations to all models, for events make sure end time is after start time
+* update User.from_omniauth method to pull in the user's first and last name

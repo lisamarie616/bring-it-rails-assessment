@@ -17,7 +17,15 @@ class EventsController < ApplicationController
   end
 
   def create
-    raise params.inspect
+    @event = Event.new(event_params)
+    @event.start_time = Chronic.parse(params[:event][:start_time])
+    @event.end_time = Chronic.parse(params[:event][:end_time])
+    if @event.save
+      flash[:success] = "Your event was successfully created!"
+      redirect_to event_path(@event)
+    else
+      redirect_to :new
+    end
   end
 
   def update
@@ -25,4 +33,9 @@ class EventsController < ApplicationController
 
   def destroy
   end
+
+  private
+    def event_params
+      params.require(:event).permit(:title, :location, :start_time, :end_time, :guests_attributes => [:email])
+    end
 end

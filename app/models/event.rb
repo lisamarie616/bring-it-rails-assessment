@@ -14,10 +14,16 @@ class Event < ActiveRecord::Base
   end
 
   def guests_attributes=(attributes)
+    attributes.values.first[:email].split(",").each do |email|
+      email.strip!
+      guest = User.find_by(email: email)
+      if guest
+        self.guests << guest
+      else
+        User.invite!(:email => email)
+        guest = User.find_by(email: email)
+        self.guests << guest
+      end
+    end
   end
-
-# params from event new page
-#{"event"=>{"title"=>"Party!!!", "location"=>"Bryant Park", "start_time"=>"next Saturday at noon", 
-#{}"end_time"=>"", "guests_attributes"=>{"0"=>{"email"=>"scotty@buttons.com, lisa@test.com, lisamarie616@yahoo.com"}}},
-
 end

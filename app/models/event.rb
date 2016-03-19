@@ -14,6 +14,16 @@ class Event < ActiveRecord::Base
   end
 
   def items_attributes=(attributes)
+    attributes.values.first[:name].split(",").each do |name_qty|
+      name, qty = name_qty.split(":")
+      name.strip!
+      qty = 1 if !qty
+      qty = qty.to_i
+      item = Item.find_or_create_by(name: name)
+      qty.times do
+        self.items << item
+      end
+    end
   end
 
   def guests_attributes=(attributes)
@@ -25,7 +35,7 @@ class Event < ActiveRecord::Base
       else
         User.invite!(:email => email)
         guest = User.find_by(email: email)
-        self.guests << guest
+        self.guests << guest if guest
       end
     end
   end

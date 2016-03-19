@@ -14,8 +14,6 @@ x add figaro to store environment variables (needed for action mailer)
 x added section for guests on event new page
 x added section for items on event new page
 
-* need to fix event assigned_items and unassigned_items methods, they're causing problems on the event show page
-* need to consider how to allow a user to add more than one of a particular item
 * figure out how to handle errors caused by users entering incorrectly formatted data into the More Items and Guests fields on the events new page
 * on the event show page, make items needed checkboxes that the user can select and it will then assign that item for that event to the user
 * create static home page

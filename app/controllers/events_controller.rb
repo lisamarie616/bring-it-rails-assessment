@@ -17,7 +17,8 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(event_params)
+    @event = current_user.hosted_events.build(event_params)
+    # @event = Event.new(event_params)
     @event.start_time = Chronic.parse(params[:event][:start_time])
     @event.end_time = Chronic.parse(params[:event][:end_time])
     if @event.save
@@ -36,6 +37,6 @@ class EventsController < ApplicationController
 
   private
     def event_params
-      params.require(:event).permit(:title, :location, :start_time, :end_time, :guests_attributes => [:email])
+      params.require(:event).permit(:title, :location, :start_time, :end_time, :item_ids =>[], :guests_attributes => [:email])
     end
 end

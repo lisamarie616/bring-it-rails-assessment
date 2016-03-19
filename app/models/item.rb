@@ -6,4 +6,8 @@ class Item < ActiveRecord::Base
   def people_bringing
     assigned_persons.map {|person| person.full_name}.join(", ")
   end
+
+  def pretty_name
+    name.titleize
+  end
 end

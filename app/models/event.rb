@@ -5,12 +5,24 @@ class Event < ActiveRecord::Base
   has_many :event_items
   has_many :items, through: :event_items
 
+  def guests_sorted
+    guests.sort_by {|guest| guest.full_name}
+  end
+
   def assigned_items
     event_items.where.not(assigned_person: nil)
   end
 
+  def assigned_items_sorted
+    assigned_items.sort_by {|event_item| event_item.item.name}
+  end
+
   def unassigned_items
     event_items.where(assigned_person: nil)
+  end
+
+  def unassigned_items_sorted
+    unassigned_items.sort_by {|event_item| event_item.item.name}
   end
 
   def items_attributes=(attributes)

@@ -13,10 +13,11 @@ x add devise_invitable so users can invite other users
 x add figaro to store environment variables (needed for action mailer)
 x added section for guests on event new page
 x added section for items on event new page
+x event show page--ordered guests, who's bringing what, and still needed sections
 
-* figure out how to handle errors caused by users entering incorrectly formatted data into the More Items and Guests fields on the events new page
 * on the event show page, make items needed checkboxes that the user can select and it will then assign that item for that event to the user
 * create static home page
 * do i want to list invited events on the same page as hosted events? yes, probably...handle this
 * add validations to all models, for events make sure end time is after start time
 * update User.from_omniauth method to pull in the user's first and last name
+* figure out how to handle errors caused by users entering incorrectly formatted data into the More Items and Guests fields on the events new page (implemented a quick fix for the guests field, but need to revisit; if incorreclty formatted data in the items field, it will just be saved to the db with bad format, so need to rethink that also)

@@ -2,17 +2,17 @@
 
 <%= render 'event_simple', event: @event %>
 
-<h2 class="page-header">Guests</h2>
-<% @event.guests.each do |guest| %>
-  <li><%= guest.full_name %></li>
-<% end %>
-
 <h2 class="page-header">Who's Bringing What</h2>
-<% @event.assigned_items.each do |item| %>
+<% @event.assigned_items_sorted.each do |item| %>
   <li><%= item.item_name %>: <%= item.assigned_person.full_name %></li>
 <% end %>
 
 <h2 class="page-header">Still Needed <small>select item(s) to bring:</small></h2>
-<% @event.unassigned_items.each do |item| %>
+<% @event.unassigned_items_sorted.each do |item| %>
   <li><%= item.item_name %></li>
+<% end %>
+
+<h2 class="page-header">Guests</h2>
+<% @event.guests_sorted.each do |guest| %>
+  <li><%= guest.full_name %></li>
 <% end %>

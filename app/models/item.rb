@@ -10,4 +10,8 @@ class Item < ActiveRecord::Base
   def pretty_name
     name.titleize
   end
+
+  def self.sorted
+    self.order(:name)
+  end
 end

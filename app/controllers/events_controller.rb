@@ -18,7 +18,6 @@ class EventsController < ApplicationController
 
   def create
     @event = current_user.hosted_events.build(event_params)
-    # @event = Event.new(event_params)
     @event.start_time = Chronic.parse(params[:event][:start_time])
     @event.end_time = Chronic.parse(params[:event][:end_time])
     if @event.save

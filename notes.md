@@ -16,7 +16,7 @@ x added section for items on event new page
 
 * need to fix event assigned_items and unassigned_items methods, they're causing problems on the event show page
 * need to consider how to allow a user to add more than one of a particular item
-* on the event new page, need to add section for items for the event
+* figure out how to handle errors caused by users entering incorrectly formatted data into the More Items and Guests fields on the events new page
 * on the event show page, make items needed checkboxes that the user can select and it will then assign that item for that event to the user
 * create static home page
 * do i want to list invited events on the same page as hosted events? yes, probably...handle this

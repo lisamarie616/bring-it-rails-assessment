@@ -6,11 +6,14 @@ class Event < ActiveRecord::Base
   has_many :items, through: :event_items
 
   def assigned_items
-    items.joins(:event_items).where.not(event_items: {assigned_person_id: nil}).uniq
+    event_items.where.not(assigned_person: nil)
   end
 
   def unassigned_items
-    items.joins(:event_items).where(event_items: {assigned_person_id: nil})
+    event_items.where(assigned_person: nil)
+  end
+
+  def items_attributes=(attributes)
   end
 
   def guests_attributes=(attributes)

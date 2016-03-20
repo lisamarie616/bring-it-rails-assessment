@@ -4,8 +4,8 @@
     <%= f.text_field :location %>
     <%= f.label "Start Time" %>
     <div class="help-block">ex: "8/6/1991 at 1:30pm" OR "next Saturday at noon"</div>
-    <%= f.text_field :start_time, hide_label: true %>
-    <%= f.text_field :end_time %>
+    <%= f.text_field :start_time, value: date_helper(@event.start_time), hide_label: true %>
+    <%= f.text_field :end_time, value: date_helper(@event.end_time) %>
 
     <%= f.label "Items Needed" %>
     <%= f.collection_check_boxes :item_ids, Item.sorted, :id, :pretty_name, inline: true, hide_label: true %>
@@ -19,7 +19,7 @@
     <%= f.fields_for :guests, [User.new] do |guest_form| %>
       <%= guest_form.label "Guests" %>
       <div class="help-block">Enter guest email addresses separated by commas.</div>
-      <%= guest_form.text_area :email, style: "resize:none", rows: "7", cols: "100", hide_label: true %>
+      <%= guest_form.text_area :email, style: "resize:none", rows: "7", cols: "100", hide_label: true, value: @event.guest_emails %>
     <% end %>
 
     <%= f.submit class: "btn btn-primary" %>

@@ -20,11 +20,11 @@ User.create(email: "user9@test.com", password: "password")
 User.create(email: "user10@test.com", password: "password")
 
 
-Event.create(title: "Picnic", location: "Central Park", start_time: "2016-03-13 14:00:00", host_id: 1)
-Event.create(title: "BBQ", location: "My backyard", start_time: "2016-03-15 12:00:00", host_id: 1)
-Event.create(title: "Party", location: "My house", start_time: "2016-03-20 16:00:00", host_id: 2)
-Event.create(title: "Potluck Dinner", location: "Rec Center", start_time: "2016-03-25 17:00:00", host_id: 3)
-Event.create(title: "Celebration", location: "Bar", start_time: "2016-03-27 18:00:00", host_id: 3)
+Event.create(title: "Picnic", location: "Central Park", start_time: Chronic.parse("tomorrow at noon"), host_id: 1)
+Event.create(title: "BBQ", location: "My backyard", start_time: Chronic.parse("tomorrow at 2:30pm"), host_id: 1)
+Event.create(title: "Party", location: "My house", start_time: Chronic.parse("next Thursday at 8pm"), host_id: 2)
+Event.create(title: "Potluck Dinner", location: "Rec Center", start_time: Chronic.parse("next Saturday at 4pm"), host_id: 3)
+Event.create(title: "Celebration", location: "Bar", start_time: Chronic.parse("3/31/16 3pm"), host_id: 3)
 
 Item.create(name: "chips")
 Item.create(name: "salsa")

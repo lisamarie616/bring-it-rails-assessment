@@ -15,21 +15,16 @@ x added section for guests on event new page
 x added section for items on event new page
 x event show page--ordered guests, who's bringing what, and still needed sections
 
-* on the event show page, make items needed checkboxes that the user can select and it will then assign that item for that event to the user
-* need to figure out how to incorporate both checkboxes and an empty field so the user can check off items and enter a new item if they want to bring something not on the list; at the moment a nested form (form_for [@event, @event.items]) isn't allowing the accepts_nested_attributes for items to render properly but not doing a nested form (form_for @event) while that renders the fields properly to process accepts_nested_attributes for items has the incorrect action; think about how to process both checkboxes and an empty field in one click
-* add RSVP status to guests on event show page
-* create static home page
+* implement Destroy action for events
 * do i want to list invited events on the same page as hosted events? yes, probably...handle this
+* give user the option to unassign an item (where should this go? maybe a button next to the user and item line in the who's bringing what section that is only visible to the host and the current user?)
+* add RSVP status to guests on event show page?
+* create static home page
 * add validations to all models, for events make sure end time is after start time
 * set any necessary dependent: :destroy options
 * update User.from_omniauth method to pull in the user's first and last name
 * figure out how to handle errors caused by users entering incorrectly formatted data into the More Items and Guests fields on the events new page (implemented a quick fix for the guests field, but need to revisit; if incorreclty formatted data in the items field, it will just be saved to the db with bad format, so need to rethink that also)
-* EventItems Controller create method--iteration in the controller feels wrong, any other way to accomplish this??
-
-<%= bootstrap_form_for ([@event, @event_item]) do |f| %>
-  <%= f.collection_check_boxes :item_id, @event.unassigned_items_sorted, :item_id, :item_name, hide_label: true %>
-  <%= f.submit "BringIt!", class: "btn btn-primary btn-sm" %>
-<% end %>
+* implement a better way to store and retrieve dates and times
 
 <%= bootstrap_form_for @event do |f| %>
   <%= f.collection_check_boxes :event_items, @event.unassigned_items_sorted, :item_id, :item_name, hide_label: true %>
@@ -40,7 +35,6 @@ x event show page--ordered guests, who's bringing what, and still needed section
     <% end %>
   <%= f.submit "BringIt!", class: "btn btn-primary btn-sm" %>
 <% end %>
-
 
 eventitems controller
 @event = Event.find(params[:event_id])

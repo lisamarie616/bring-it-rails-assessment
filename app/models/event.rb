@@ -9,6 +9,10 @@ class Event < ActiveRecord::Base
     guests.sort_by {|guest| guest.full_name}
   end
 
+  def guest_emails
+    guests.sort_by {|guest| guest.email}.map {|guest| guest.email}.join(", ")
+  end
+
   def assigned_items
     event_items.where.not(assigned_person: nil)
   end
@@ -42,12 +46,12 @@ class Event < ActiveRecord::Base
     attributes.values.first[:email].split(",").each do |email|
       email.strip!
       guest = User.find_by(email: email)
-      if guest
+      if guest && !self.guests.include?(guest)
         self.guests << guest
       else
         User.invite!(:email => email)
         guest = User.find_by(email: email)
-        self.guests << guest if guest
+        self.guests << guest if guest && !self.guests.include?(guest)
       end
     end
   end

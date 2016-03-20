@@ -15,6 +15,7 @@ class EventsController < ApplicationController
   end
 
   def edit
+    @event = Event.find(params[:id])
   end
 
   def create
@@ -25,11 +26,20 @@ class EventsController < ApplicationController
       flash[:success] = "Your event was successfully created!"
       redirect_to event_path(@event)
     else
-      redirect_to :new
+      render :new
     end
   end
 
   def update
+    @event = Event.find(params[:id])
+    if @event.update(event_params)
+      @event.start_time = Chronic.parse(params[:event][:start_time])
+      @event.end_time = Chronic.parse(params[:event][:end_time])
+      @event.save
+      redirect_to event_path(@event)
+    else
+      render :edit
+    end
   end
 
   def destroy

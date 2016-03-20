@@ -1,4 +1,4 @@
 <h4><%= event.title %></h4>
 <p><strong>Location:</strong> <%= event.location %></p>
-<p><strong>Start Time:</strong> <%= event.start_time.localtime.strftime("%A, %B %d, %Y at %l%p") %></p>
-<p><strong>End Time:</strong> <%= event.end_time.blank? ? "n/a" : event.end_time.localtime.strftime("%A, %B %d, %Y at %l%p") %></p>
+<p><strong>Start Time:</strong> <%= date_helper(event.start_time) %></p>
+<p><strong>End Time:</strong> <%= date_helper(event.end_time) %></p>

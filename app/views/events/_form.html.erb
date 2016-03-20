@@ -1,16 +1,17 @@
 <div class="col-sm-8">
   <%= bootstrap_form_for @event do |f| %>
-    <%= f.text_field :title, label: "Event Title", class: "form-control", autofocus: true %>
-    <%= f.text_field :location, class: "form-control" %>
+    <%= f.text_field :title, label: "Event Title", autofocus: true %>
+    <%= f.text_field :location %>
     <%= f.label "Start Time" %>
     <div class="help-block">ex: "8/6/1991 at 1:30pm" OR "next Saturday at noon"</div>
-    <%= f.text_field :start_time, class: "form-control", hide_label: true %>
-    <%= f.text_field :end_time, class: "form-control" %>
+    <%= f.text_field :start_time, hide_label: true %>
+    <%= f.text_field :end_time %>
+
     <%= f.label "Items Needed" %>
     <%= f.collection_check_boxes :item_ids, Item.sorted, :id, :pretty_name, inline: true, hide_label: true %>
 
     <%= f.fields_for :items, @event.items.build do |items_fields| %>
-      <%= f.label "More Items" %>
+      <%= items_fields.label "More Items" %>
       <div class="help-block">Enter more items separated by commas. To add more than one of an item, enter "item:number". For example "wine:4, cheese:2, crackers"</div>
       <%= items_fields.text_field :name, hide_label: true %>
     <% end %>
@@ -18,7 +19,7 @@
     <%= f.fields_for :guests, [User.new] do |guest_form| %>
       <%= guest_form.label "Guests" %>
       <div class="help-block">Enter guest email addresses separated by commas.</div>
-      <%= guest_form.text_area :email, class: "form-control", style: "resize:none", rows: "7", cols: "100", hide_label: true %>
+      <%= guest_form.text_area :email, style: "resize:none", rows: "7", cols: "100", hide_label: true %>
     <% end %>
 
     <%= f.submit class: "btn btn-primary" %>

@@ -3,13 +3,19 @@
 <%= render 'event_simple', event: @event %>
 
 <h2 class="page-header">Who's Bringing What</h2>
-<% @event.assigned_items_sorted.each do |item| %>
-  <li><%= item.item_name %>: <%= item.assigned_person.full_name %></li>
+<% @event.assigned_items_sorted.each do |event_item| %>
+  <li><%= event_item.item_name %>: <%= event_item.assigned_person.full_name %></li>
 <% end %>
 
 <h2 class="page-header">Still Needed <small>select item(s) to bring:</small></h2>
-<% @event.unassigned_items_sorted.each do |item| %>
-  <li><%= item.item_name %></li>
+<% @event.unassigned_items_sorted.each do |event_item| %>
+  <li><%= event_item.item_name %></li>
+<% end %>
+
+<% @event.unassigned_items_sorted.each do |event_item| %>
+  <div style="display:inline-block;">
+    <%= button_to event_item.item_name, event_event_item_path(@event, event_item), method: :put, class: "btn btn-primary btn-sm" %>
+  </div>
 <% end %>
 
 <h2 class="page-header">Guests</h2>

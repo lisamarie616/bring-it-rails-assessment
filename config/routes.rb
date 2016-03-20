@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :events do
     resources :guests, only: [:index]
+    resources :event_items, only: [:update]
   end
 
   root 'events#index'

@@ -17,9 +17,9 @@ x event show page--ordered guests, who's bringing what, and still needed section
 x implement Destroy action for events
 x add invited events to event index page
 
+* create static home page and assign links in nav bar
 * give user the option to unassign an item (where should this go? maybe a button next to the user and item line in the who's bringing what section that is only visible to the host and the current user?)
 * add RSVP status to guests on event show page?
-* create static home page
 * add validations to all models, for events make sure end time is after start time
 * set any necessary dependent: :destroy options
 * update User.from_omniauth method to pull in the user's first and last name

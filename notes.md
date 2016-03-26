@@ -14,8 +14,8 @@ x add figaro to store environment variables (needed for action mailer)
 x added section for guests on event new page
 x added section for items on event new page
 x event show page--ordered guests, who's bringing what, and still needed sections
+x implement Destroy action for events
 
-* implement Destroy action for events
 * do i want to list invited events on the same page as hosted events? yes, probably...handle this
 * give user the option to unassign an item (where should this go? maybe a button next to the user and item line in the who's bringing what section that is only visible to the host and the current user?)
 * add RSVP status to guests on event show page?

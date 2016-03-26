@@ -1,11 +1,23 @@
 <div class="col-sm-12">
-  <h1 class="page-header">Hosted Events</h1>
+  <h1 class="page-header">Events You're Hosting</h1>
 </div>
 <% if @hosted_events.size.zero? %>
-  <p>You aren't hosting anything yet. Get a party started by clicking "Create New Event"!</p>
+  <div class="col-sm-12">
+    <p>You aren't hosting anything yet. Get a party started by clicking "Create New Event"!</p>
+  </div>
 <% else %>
   <%= render @hosted_events %>
 <% end %>
 <div class="col-sm-12">
   <%= link_to "Create New Event", new_event_path, class: "btn btn-primary" %>
 </div>
+<div class="col-sm-12">
+  <h1 class="page-header">Events You're Invited To</h1>
+</div>
+<% if @invited_events.size.zero? %>
+  <div class="col-sm-12">
+    <p>No upcoming events</p>
+  </div>
+<% else %>
+  <%= render @invited_events %>
+<% end %>

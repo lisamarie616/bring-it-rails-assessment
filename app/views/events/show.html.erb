@@ -22,7 +22,7 @@
   <%= f.submit "Add Items", class: "btn btn-primary btn-sm" %>
 <% end %>
 
-<h2 class="page-header">Guests</h2>
+<h2 class="page-header">Guest List</h2>
 <% @event.guests_sorted.each do |guest| %>
   <li><%= guest.full_name %></li>
 <% end %>

@@ -3,6 +3,7 @@ class EventsController < ApplicationController
 
   def index
     @hosted_events = current_user.hosted_events
+    @invited_events = current_user.invited_events
   end
 
   def show

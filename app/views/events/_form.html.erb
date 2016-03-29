@@ -4,8 +4,8 @@
     <%= f.text_field :location %>
     <%= f.label "Start Time" %>
     <div class="help-block">ex: "8/6/1991 at 1:30pm" OR "next Saturday at noon"</div>
-    <%= f.text_field :start_time, value: date_helper(@event.start_time), hide_label: true %>
-    <%= f.text_field :end_time, value: date_helper(@event.end_time) %>
+    <%= f.text_field :start_time, value: start_date_helper(@event), hide_label: true %>
+    <%= f.text_field :end_time, value: end_date_helper(@event) %>
 
     <%= f.label "Items Needed" %>
     <%= f.collection_check_boxes :item_ids, Item.sorted, :id, :pretty_name, inline: true, hide_label: true %>

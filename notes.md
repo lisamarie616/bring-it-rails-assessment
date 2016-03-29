@@ -16,8 +16,8 @@ x added section for items on event new page
 x event show page--ordered guests, who's bringing what, and still needed sections
 x implement Destroy action for events
 x add invited events to event index page
+x create static home page and assign links in nav bar
 
-* create static home page and assign links in nav bar
 * add permissions so users can only edit or delete events they are hosting
 * give user the option to unassign an item (where should this go? maybe a button next to the user and item line in the who's bringing what section that is only visible to the host and the current user?)
 * add RSVP status to guests on event show page?

@@ -5,8 +5,8 @@
     </div>
     <div class="panel-body">
       <p><strong>Location:</strong> <%= event.location %></p>
-      <p><strong>Start Time:</strong> <%= date_helper(event.start_time) %></p>
-      <p><strong>End Time:</strong> <%= date_helper(event.end_time) %></p>
+      <p><strong>Start Time:</strong> <%= start_date_helper(event) %></p>
+      <p><strong>End Time:</strong> <%= end_date_helper(event) %></p>
       <ul class="list-inline">
         <li><%= link_to "Details", event_path(event), class: "btn btn-sm btn-default" %></li>
         <li><%= link_to "Edit", edit_event_path(event), class: "btn btn-sm btn-default" %></li>

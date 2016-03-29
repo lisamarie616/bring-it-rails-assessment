@@ -10,7 +10,7 @@
 <h2 class="page-header">Still Needed <small>select item(s) to bring:</small></h2>
 <% @event.unassigned_items_sorted.each do |event_item| %>
   <div style="display:inline-block;">
-    <%= button_to event_item.item_name, event_event_item_path(@event, event_item), method: :put, class: "btn btn-primary btn-sm" %>
+    <%= button_to event_item.item_name, event_event_item_path(@event, event_item), method: :put, class: "btn btn-info btn-sm" %>
   </div>
 <% end %>
 
@@ -19,7 +19,7 @@
     <p>Bringing something not on the list? Enter it here. To add more than one of an item, enter "item:number". For example, "homemade pie:2"</p>
     <%= items_fields.text_field :name, hide_label: true %>
     <% end %>
-  <%= f.submit "Add Items", class: "btn btn-primary btn-sm" %>
+  <%= f.submit "Add Items", class: "btn btn-primary" %>
 <% end %>
 
 <h2 class="page-header">Guest List</h2>

@@ -18,12 +18,12 @@ x implement Destroy action for events
 x add invited events to event index page
 x create static home page and assign links in nav bar
 x add permissions so users can only edit or delete events they are hosting (exception: all users can edit the items_attributes of all events so they can add items not on the list)
+x add validations to models, for events make sure end time is after start time
 
+* add a view to show the user all items he/she is bringing to all events
 * give user the option to unassign an item (where should this go? maybe a button next to the user and item line in the who's bringing what section that is only visible to the host and the current user?)
 * add RSVP status to guests on event show page?
-* add validations to all models, for events make sure end time is after start time
 * set any necessary dependent: :destroy options
-* add a view to show the user all items he/she is bringing to all events
 * update User.from_omniauth method to pull in the user's first and last name
 * figure out how to handle errors caused by users entering incorrectly formatted data into the More Items and Guests fields on the events new page (implemented a quick fix for the guests field, but need to revisit; if incorreclty formatted data in the items field, it will just be saved to the db with bad format, so need to rethink that also)
 * implement a better way to store and retrieve dates and times

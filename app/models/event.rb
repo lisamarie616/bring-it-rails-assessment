@@ -5,6 +5,15 @@ class Event < ActiveRecord::Base
   has_many :event_items
   has_many :items, through: :event_items
 
+  validates :title, :location, :start_time, presence: :true
+  validate :end_time_after_start
+
+  def end_time_after_start
+    if end_time && end_time <= start_time
+      errors.add(:end_time, "End time must be after start time")
+    end
+  end
+
   def start_time=(start_time)
     super(Chronic.parse(start_time))
   end

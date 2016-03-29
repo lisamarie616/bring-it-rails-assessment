@@ -9,8 +9,11 @@
       <p><strong>End Time:</strong> <%= end_date_helper(event) %></p>
       <ul class="list-inline">
         <li><%= link_to "Details", event_path(event), class: "btn btn-sm btn-default" %></li>
-        <li><%= link_to "Edit", edit_event_path(event), class: "btn btn-sm btn-default" %></li>
-        <li><%= link_to "Delete", event_path(event), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-sm btn-default" %></li>
+        <% if current_user == event.host %>
+          <li><%= link_to "Edit", edit_event_path(event), class: "btn btn-sm btn-default" %></li>
+          <li><%= link_to "Delete", event_path(event), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-sm btn-default" %>
+        <% end %>
+        </li>
       </ul>
     </div>
   </div>

@@ -20,9 +20,8 @@ class EventsController < ApplicationController
   end
 
   def create
+    @event = Event.new(host: current_user)
     @event = current_user.hosted_events.build(event_params)
-    @event.start_time = Chronic.parse(params[:event][:start_time])
-    @event.end_time = Chronic.parse(params[:event][:end_time])
     if @event.save
       flash[:success] = "Your event was successfully created!"
       redirect_to event_path(@event)
@@ -34,8 +33,6 @@ class EventsController < ApplicationController
   def update
     @event = Event.find(params[:id])
     if @event.update(event_params)
-      @event.start_time = Chronic.parse(params[:event][:start_time])
-      @event.end_time = Chronic.parse(params[:event][:end_time])
       @event.save
       redirect_to event_path(@event)
     else
@@ -45,6 +42,7 @@ class EventsController < ApplicationController
 
   def destroy
     @event = Event.find(params[:id])
+    authorize @event
     @event.destroy
     flash[:notice] = "Event deleted"
     redirect_to events_path
@@ -52,6 +50,6 @@ class EventsController < ApplicationController
 
   private
     def event_params
-      params.require(:event).permit(:title, :location, :start_time, :end_time, :item_ids =>[], :items_attributes => [:name], :guests_attributes => [:email])
+      params.require(:event).permit(policy(@event).permitted_attributes)
     end
 end

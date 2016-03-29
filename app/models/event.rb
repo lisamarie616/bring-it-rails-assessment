@@ -5,6 +5,26 @@ class Event < ActiveRecord::Base
   has_many :event_items
   has_many :items, through: :event_items
 
+  def start_time=(start_time)
+    super(Chronic.parse(start_time))
+  end
+
+  def start_time
+    super
+  end
+
+  def end_time=(end_time)
+    super(Chronic.parse(end_time))
+  end
+
+  def end_time
+    super
+  end
+
+  def host_name
+    host.full_name
+  end
+
   def guests_sorted
     guests.sort_by {|guest| guest.full_name}
   end

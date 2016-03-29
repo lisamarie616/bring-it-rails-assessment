@@ -1,8 +1,5 @@
 module EventsHelper
-  # def date_helper(datetime)
-  #   datetime.blank? ? "n/a" : datetime.localtime.strftime("%_m/%-d/%Y at %l:%M%P (%a)")
-  # end
-
+  
   def start_date_helper(event)
     event.start_time.blank? ? "" : format_date(event.start_time)
   end

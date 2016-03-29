@@ -31,6 +31,8 @@ gem 'devise'
 gem 'devise_invitable'
 gem 'omniauth-facebook'
 
+gem 'pundit'
+
 gem 'chronic'
 gem 'figaro'
 

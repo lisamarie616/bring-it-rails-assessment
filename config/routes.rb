@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     resources :event_items, only: [:update]
   end
 
+  put '/events/:event_id/event_items/:id/unassign' => 'event_items#unassign', as: :event_item_unassign
+
   root 'static#home'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

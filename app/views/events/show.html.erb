@@ -4,7 +4,7 @@
 
 <h2 class="page-header">Who's Bringing What</h2>
 <% @event.assigned_items_sorted.each do |event_item| %>
-  <li><%= event_item.item_name %>: <%= event_item.assigned_person.full_name %></li>
+  <li><%= event_item.item_name %>: <%= event_item.assigned_person.full_name %> <%= link_to "Remove", event_item_unassign_path(@event, event_item), method: :put if event_item.assigned_person == current_user || @event.host == current_user %></li>
 <% end %>
 
 <h2 class="page-header">Still Needed <small>select item(s) to bring:</small></h2>

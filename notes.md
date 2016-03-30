@@ -27,22 +27,3 @@ x add a view to show the user all items he/she is bringing to all events
 * figure out how to handle errors caused by users entering incorrectly formatted data into the More Items and Guests fields on the events new page (implemented a quick fix for the guests field, but need to revisit; if incorreclty formatted data in the items field, it will just be saved to the db with bad format, so need to rethink that also)
 * implement a better way to store and retrieve dates and times
 * REFACTOR!
-
-<%= bootstrap_form_for @event do |f| %>
-  <%= f.collection_check_boxes :event_items, @event.unassigned_items_sorted, :item_id, :item_name, hide_label: true %>
-  <%= f.fields_for :items, @event.items.build do |items_fields| %>
-      <%= items_fields.label "More Items" %>
-      <div class="help-block">Bringing something not on the list? Enter it here. To add more than one of an item, enter "item:number". For example "homemade pie:2"</div>
-      <%= items_fields.text_field :name, hide_label: true %>
-    <% end %>
-  <%= f.submit "BringIt!", class: "btn btn-primary btn-sm" %>
-<% end %>
-
-eventitems controller
-@event = Event.find(params[:event_id])
-    @event.items_attributes=(params[:event_item][:items])
-    item_ids = params[:event_item][:item_id]
-    item_ids.each do |id|
-      item = EventItem.find_by(event: @event, item_id: id, assigned_person: nil)
-      item.update(assigned_person: current_user) if item
-    end

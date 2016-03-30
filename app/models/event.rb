@@ -2,7 +2,7 @@ class Event < ActiveRecord::Base
   has_many :event_users, :foreign_key => :invited_event_id
   has_many :guests, :through => :event_users
   belongs_to :host, :class_name => "User"
-  has_many :event_items
+  has_many :event_items, dependent: :destroy
   has_many :items, through: :event_items
 
   validates :title, :location, :start_time, presence: :true

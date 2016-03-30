@@ -21,9 +21,9 @@ x add permissions so users can only edit or delete events they are hosting (exce
 x add validations to models, for events make sure end time is after start time
 x add link to unassign item on event show page
 x add a view to show the user all items he/she is bringing to all events
+x set any necessary dependent: :destroy options
+x update User.from_omniauth method to pull in the user's first and last name
 
-* set any necessary dependent: :destroy options
-* update User.from_omniauth method to pull in the user's first and last name
 * figure out how to handle errors caused by users entering incorrectly formatted data into the More Items and Guests fields on the events new page (implemented a quick fix for the guests field, but need to revisit; if incorreclty formatted data in the items field, it will just be saved to the db with bad format, so need to rethink that also)
 * implement a better way to store and retrieve dates and times
 * REFACTOR!

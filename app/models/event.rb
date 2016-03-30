@@ -58,6 +58,10 @@ class Event < ActiveRecord::Base
     unassigned_items.sort_by {|event_item| event_item.item.name}
   end
 
+  def user_items(user)
+    self.event_items.where(assigned_person: user)
+  end
+
   def items_attributes=(attributes)
     attributes.values.first[:name].split(",").each do |name_qty|
       name, qty = name_qty.split(":")

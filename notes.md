@@ -20,9 +20,8 @@ x create static home page and assign links in nav bar
 x add permissions so users can only edit or delete events they are hosting (exception: all users can edit the items_attributes of all events so they can add items not on the list)
 x add validations to models, for events make sure end time is after start time
 x add link to unassign item on event show page
+x add a view to show the user all items he/she is bringing to all events
 
-* add a view to show the user all items he/she is bringing to all events
-* add RSVP status to guests on event show page?
 * set any necessary dependent: :destroy options
 * update User.from_omniauth method to pull in the user's first and last name
 * figure out how to handle errors caused by users entering incorrectly formatted data into the More Items and Guests fields on the events new page (implemented a quick fix for the guests field, but need to revisit; if incorreclty formatted data in the items field, it will just be saved to the db with bad format, so need to rethink that also)

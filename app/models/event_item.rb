@@ -6,4 +6,9 @@ class EventItem < ActiveRecord::Base
   def item_name
     item.pretty_name
   end
+
+  def event_name
+    event.title
+  end
+
 end

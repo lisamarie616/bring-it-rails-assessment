@@ -13,7 +13,7 @@
     <%= button_to event_item.item_name, event_event_item_path(@event, event_item), method: :put, class: "btn btn-info btn-sm" %>
   </div>
 <% end %>
-
+<br><br>
 <%= bootstrap_form_for @event do |f| %>
   <%= f.fields_for :items, @event.items.build do |items_fields| %>
     <p>Bringing something not on the list? Enter it here. To add more than one of an item, enter "item:number". For example, "homemade pie:2"</p>

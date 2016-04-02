@@ -1,0 +1,6 @@
+<li><%= link_to event.title, event_path(event) %> on <%= start_date_helper(event) %></li>
+<% event.user_items(current_user).each do |event_item| %>
+  <ul>
+    <li><%= event_item.item_name %></li>
+  </ul>
+<% end %>

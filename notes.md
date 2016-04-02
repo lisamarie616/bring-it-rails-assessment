@@ -26,4 +26,4 @@ x update User.from_omniauth method to pull in the user's first and last name
 
 * figure out how to handle errors caused by users entering incorrectly formatted data into the More Items and Guests fields on the events new page (implemented a quick fix for the guests field, but need to revisit; if incorreclty formatted data in the items field, it will just be saved to the db with bad format, so need to rethink that also)
 * implement a better way to store and retrieve dates and times
-* REFACTOR!
+* give host a way to assign items to guests (do this with a click event? --> if current_user == host then give options to assign to self or a guest)

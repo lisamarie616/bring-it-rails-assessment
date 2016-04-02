@@ -7,7 +7,7 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find(params[:id])
+    @event = load_event
     @event_item = @event.event_items.build
   end
 
@@ -16,7 +16,7 @@ class EventsController < ApplicationController
   end
 
   def edit
-    @event = Event.find(params[:id])
+    @event = load_event
   end
 
   def create
@@ -31,7 +31,7 @@ class EventsController < ApplicationController
   end
 
   def update
-    @event = Event.find(params[:id])
+    @event = load_event
     if @event.update(event_params)
       @event.save
       redirect_to event_path(@event)
@@ -41,7 +41,7 @@ class EventsController < ApplicationController
   end
 
   def destroy
-    @event = Event.find(params[:id])
+    @event = load_event
     authorize @event
     @event.destroy
     flash[:notice] = "Event deleted"
@@ -51,5 +51,9 @@ class EventsController < ApplicationController
   private
     def event_params
       params.require(:event).permit(policy(@event).permitted_attributes)
+    end
+
+    def load_event
+      Event.find(params[:id])
     end
 end

@@ -1,20 +1,10 @@
 <h2 class="page-header">What You're Bringing Where</h2>
 <ul>
   <% @hosted_events.each do |event| %>
-    <li><%= link_to event.title, event_path(event) %> on <%= start_date_helper(event) %></li>
-    <% event.user_items(current_user).each do |event_item| %>
-      <ul>
-        <li><%= event_item.item_name %></li>
-      </ul>
-    <% end %>
+    <%= render 'event_item', {event: event} %>
   <% end %>
 
   <% @invited_events.each do |event| %>
-    <li><%= link_to event.title, event_path(event) %> on <%= start_date_helper(event) %></li>
-    <% event.user_items(current_user).each do |event_item| %>
-      <ul>
-        <li><%= event_item.item_name %></li>
-      </ul>
-    <% end %>
+    <%= render 'event_item', {event: event} %>
   <% end %>
 </ul>

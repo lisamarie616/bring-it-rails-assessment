@@ -65,7 +65,7 @@ class Event < ActiveRecord::Base
   def items_attributes=(attributes)
     attributes.values.first[:name].split(",").each do |name_qty|
       name, qty = name_qty.split(":")
-      name.strip!
+      name.titleize.strip!
       qty = 1 if !qty
       qty = qty.to_i
       item = Item.find_or_create_by(name: name)

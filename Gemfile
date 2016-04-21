@@ -36,6 +36,8 @@ gem 'pundit'
 gem 'chronic'
 gem 'figaro'
 
+gem 'rails-erd'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

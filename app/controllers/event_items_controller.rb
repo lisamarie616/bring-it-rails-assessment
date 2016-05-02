@@ -20,12 +20,7 @@ class EventItemsController < ApplicationController
   end
 
   private
-
-  def load_event
-    Event.find_by(id: params[:event_id])
-  end
-
-  def load_event_item
-    EventItem.find_by(id: params[:id])
-  end
+    def load_event_item
+      EventItem.find(params[:id])
+    end
 end

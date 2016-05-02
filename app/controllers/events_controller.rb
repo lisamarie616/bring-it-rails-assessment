@@ -33,7 +33,6 @@ class EventsController < ApplicationController
   def update
     @event = load_event
     if @event.update(event_params)
-      @event.save
       redirect_to event_path(@event)
     else
       render :edit
@@ -51,9 +50,5 @@ class EventsController < ApplicationController
   private
     def event_params
       params.require(:event).permit(policy(@event).permitted_attributes)
-    end
-
-    def load_event
-      Event.find(params[:id])
     end
 end

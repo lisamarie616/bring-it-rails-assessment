@@ -29,7 +29,9 @@
             <p>You aren't hosting anything yet. Get a party started by clicking "Create New Event"!</p>
           </div>
         <% else %>
-          <%= render @hosted_events %>
+          <div class="row">
+            <%= render @hosted_events %>
+          </div>
         <% end %>
       </div>
       <div class="tab-pane fade in" id="tab2">
@@ -38,9 +40,28 @@
             <p>No upcoming events</p>
           </div>
         <% else %>
-          <%= render @invited_events %>
+          <div class="row">
+            <%= render @invited_events %>
+          </div>
         <% end %>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+$(function() {
+  $(".btn-pref .btn").click(function () {
+    $(".btn-pref .btn").removeClass("btn-primary").addClass("btn-default");
+    $(this).removeClass("btn-default").addClass("btn-primary");   
+  });
+
+  $(".expand-event-index").click(function(){
+    var id = $(this).data("id");
+    $('#event-index-details-' + id).toggle(100);
+    $.get("/events/" + id + ".json", function(data){
+      $('#location-' + id).html(data["event"]["location"]);
+    });
+  });
+});
+</script>

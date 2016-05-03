@@ -27,7 +27,7 @@ gem 'bootstrap-sass', '~> 3.2.0'
 gem 'bootswatch-rails'
 gem 'bootstrap_form'
 
-gem 'devise'
+gem 'devise', '~> 3.5.6'
 gem 'devise_invitable'
 gem 'omniauth-facebook'
 
@@ -39,6 +39,8 @@ gem 'figaro'
 gem 'rails-erd'
 
 gem 'active_model_serializers'
+
+gem 'handlebars_assets'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

@@ -9,6 +9,10 @@ class EventsController < ApplicationController
   def show
     @event = load_event
     @event_item = @event.event_items.build
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @event }
+    end
   end
 
   def new

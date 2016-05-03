@@ -1,33 +1,76 @@
-<h2 class="page-header">Event Details</h2>
-
-<%= render 'event_simple', event: @event %>
-
-<% if current_user == @event.host %>
-  <%= link_to "Edit", edit_event_path(@event), class: "btn btn-sm btn-primary" %>
-  <%= link_to "Delete", event_path(@event), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-sm btn-primary" %>
-<% end %>
-
-<h2 class="page-header">Who's Bringing What</h2>
-<% @event.assigned_items_sorted.each do |event_item| %>
-  <li><%= event_item.item_name %>: <%= event_item.assigned_person.full_name %> <%= link_to "Remove", event_item_unassign_path(@event, event_item), method: :put if event_item.assigned_person == current_user || @event.host == current_user %></li>
-<% end %>
-
-<h2 class="page-header">Still Needed <small>select item(s) to bring:</small></h2>
-<% @event.unassigned_items_sorted.each do |event_item| %>
-  <div style="display:inline-block;">
-    <%= button_to event_item.item_name, event_event_item_path(@event, event_item), method: :put, class: "btn btn-info btn-sm" %>
+<div class="row">
+  <div class="col-sm-12 bhoechie-tab-container">
+    <div class="col-sm-3 bhoechie-tab-menu">
+      <div class="list-group">
+        <a href="#" class="list-group-item active text-center">
+          <h4 class="glyphicon glyphicon-calendar"></h4><br/>Event Details
+        </a>
+        <a href="#" class="list-group-item text-center">
+          <h4 class="glyphicon glyphicon-cutlery"></h4><br/>Who's Bringing What
+        </a>
+        <a href="#" class="list-group-item text-center">
+          <h4 class="glyphicon glyphicon-shopping-cart"></h4><br/>Still Needed
+        </a>
+        <a href="#" class="list-group-item text-center">
+          <h4 class="glyphicon glyphicon-user"></h4><br/>Guests
+        </a>
+      </div>
+    </div>
+    <div class="col-sm-9 bhoechie-tab">
+      <!-- event details section -->
+      <div class="bhoechie-tab-content active">
+        <%= render 'event_simple', event: @event %>
+      </div>
+      <!-- who's bringing what section -->
+      <div class="bhoechie-tab-content">
+        <div class="items-list">
+          <ul>
+          <% @event.assigned_items_sorted.each do |event_item| %>
+            <li><%= event_item.item_name %>: <%= event_item.assigned_person.full_name %> <%= link_to "Remove", event_item_unassign_path(@event, event_item), method: :put if event_item.assigned_person == current_user || @event.host == current_user %></li>
+          <% end %>
+          </ul>
+        </div>
+      </div>
+      <!-- still needed section -->
+      <div class="bhoechie-tab-content">
+        <% @event.unassigned_items_sorted.each do |event_item| %>
+          <div style="display:inline-block;">
+            <%= button_to event_item.item_name, event_event_item_path(@event, event_item), method: :put, class: "btn btn-info btn-sm" %>
+          </div>
+        <% end %>
+        <br><br>
+        <%= bootstrap_form_for @event do |f| %>
+          <%= f.fields_for :items, @event.items.build do |items_fields| %>
+            <p>Bringing something not on the list? Enter it here. To add more than one of an item, enter "item:number". For example, "homemade pie:2"</p>
+            <%= items_fields.text_field :name, hide_label: true %>
+            <% end %>
+          <%= f.submit "Add Items", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+      <!-- guests section -->
+      <div class="bhoechie-tab-content">
+        <div class="guest-list">
+          <ol>
+          <% @event.guests_sorted.each do |guest| %>
+            <li><p><%= guest.full_name %></p></li>
+          <% end %>
+          </ol>
+        </div>
+      </div>
+    </div>
   </div>
-<% end %>
-<br><br>
-<%= bootstrap_form_for @event do |f| %>
-  <%= f.fields_for :items, @event.items.build do |items_fields| %>
-    <p>Bringing something not on the list? Enter it here. To add more than one of an item, enter "item:number". For example, "homemade pie:2"</p>
-    <%= items_fields.text_field :name, hide_label: true %>
-    <% end %>
-  <%= f.submit "Add Items", class: "btn btn-primary" %>
-<% end %>
+</div>
 
-<h2 class="page-header">Guest List</h2>
-<% @event.guests_sorted.each do |guest| %>
-  <li><%= guest.full_name %></li>
-<% end %>
+
+<script>
+  $(function() {
+    $("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {
+      e.preventDefault();
+      $(this).siblings('a.active').removeClass("active");
+      $(this).addClass("active");
+      var index = $(this).index();
+      $("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
+      $("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
+    });
+  });
+</script>

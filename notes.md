@@ -32,6 +32,7 @@ JQUERY BRANCH
 x add event serializer
 x clean up styles on event index page
 x add jquery to render info on event index page and create toggle effect
+x clean up styles on event show page
 
 * change start time and end time fields to calendar elements (are there bootstrap elements for this?)
 * fix items and emails fields

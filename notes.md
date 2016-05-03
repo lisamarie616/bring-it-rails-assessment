@@ -30,6 +30,7 @@ x update User.from_omniauth method to pull in the user's first and last name
 
 JQUERY BRANCH
 x add event serializer
+x clean up styles on event index page
 
 * change start time and end time fields to calendar elements (are there bootstrap elements for this?)
 * fix items and emails fields

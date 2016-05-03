@@ -9,10 +9,11 @@
 @import 'rails_bootstrap_forms';
 
 // Bootstrap body padding for fixed navbar
-body { padding-top: 60px; min-height: 1500px; }
+body { padding-top: 60px; }
 
 // And finally bootswatch style itself
 @import "bootswatch/cerulean/bootswatch";
 
 // Whatever application styles you have go last
-@import "custom"
+@import "custom";
+@import "events"

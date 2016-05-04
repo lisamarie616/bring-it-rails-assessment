@@ -31,10 +31,8 @@
       <!-- who's bringing what section -->
       <div class="bhoechie-tab-content">
         <div class="items-list">
-          <ul>
-          <% @event.assigned_items_sorted.each do |event_item| %>
-            <li><%= event_item.item_name %>: <%= event_item.assigned_person.full_name %> <%= link_to "Remove", event_item_unassign_path(@event, event_item), method: :put if event_item.assigned_person == current_user || @event.host == current_user %></li>
-          <% end %>
+          <ul id="assigned-items">
+            <%= render partial: "assigned_item", collection: @event.assigned_items_sorted %>
           </ul>
         </div>
       </div>
@@ -105,13 +103,14 @@
       return p;
     }
 
-    var Event = function(id, title, host, location, start, end) {
+    var Event = function(id, title, host, location, start, end, event_items) {
       this.id = id,
       this.title = title,
       this.host = host,
       this.location = location,
       this.start = start,
-      this.end = end || "n/a"
+      this.end = end || "n/a",
+      this.event_items = event_items
     }
         
     Event.prototype.fullName = function(){
@@ -121,15 +120,33 @@
     function getEvent(id){
       $.get("/events/" + id + ".json", function(data) {
         var anEvent = new Event(data["event"]["id"], data["event"]["title"], data["event"]["host"], data["event"]["location"], 
-          data["event"]["start_time"], data["event"]["end_time"]);
+          data["event"]["start_time"], data["event"]["end_time"], data["event"]["event_items"]);
         $('#event-title').text(anEvent.title);
         $('#event-host').text(anEvent.fullName());
         $('#event-location').text(anEvent.location);
         $('#event-start-time').text(anEvent.start);
         $('#event-end-time').text(anEvent.end);
+
+        var assignedItemTemplate = [];
+        anEvent.event_items.forEach(function(item){
+          if (item.assigned_person != null){
+            assignedItemTemplate.push("<li>" + (item.item.name.charAt(0).toUpperCase() + item.item.name.slice(1)) + ": " + (item.assigned_person.first_name || item.assigned_person.email) + "</li>")
+          }
+        })
+
+        // var unassignedItemTemplate = [];
+        // anEvent.event_items.forEach(function(item){
+        //   if (item.assigned_person == null){
+
+        //   }
+        // })
+
+        $('#assigned-items').html(assignedItemTemplate.join(""));
+
         $("#prev-event").attr("data-id", anEvent.id);
         $("#next-event").attr("data-id", anEvent.id);
         $("#edit-button").attr("data-id", anEvent.id);
+
         if (currentUserId === anEvent.host.id){
           $("#edit-button").show();
         } else {

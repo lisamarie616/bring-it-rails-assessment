@@ -40,6 +40,7 @@ x add policy for showing events
 x move previous and next buttons above event element
 x fix edit button on event show page so it refers to the correct event; remove delete button from event show page for now
 x add serializers for event_items
+x update assigned items tab to use jquery
 
 * get remaining tabs on event show page working
 * move event new form to event index page and have it add the new event to the DOM without a refresh

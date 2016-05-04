@@ -1,9 +1,5 @@
 <h4><span id="event-title"><%= event.title %></span>
-  <span id="edit-delete-buttons">
-    <a class="glyphicon glyphicon-edit btn btn-lg"></a>
-    <%#= link_to "", edit_event_path(event), class: "glyphicon glyphicon-edit btn btn-lg" %>
-    <%= link_to "", event_path(event), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove btn btn-lg" %>
-  </span>
+  <a class="glyphicon glyphicon-edit btn btn-lg" id="edit-button" data-id="<%= event.id %>"></a>
 </h4>
 <p><strong>Host:</strong> <span id="event-host"><%= event.host_name %></span></p>
 <p><strong>Location:</strong> <span id="event-location"><%= event.location %></span></p>

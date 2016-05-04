@@ -38,9 +38,10 @@ x add jquery to event show page
 x fix the way event show page is getting the next event, so only the current user's events get cycled through
 x add policy for showing events
 x move previous and next buttons above event element
+x fix edit button on event show page so it refers to the correct event; remove delete button from event show page for now
 
-* fix edit and delete buttons on event show page so they refer to the right event ID
 * get remaining tabs on event show page working
-* change start time and end time fields to calendar elements (are there bootstrap elements for this?)
+* move event new form to event index page and have it add the new event to the DOM without a refresh
 * fix items and emails fields
 * improve views with bootsnipp
+* change start time and end time fields to calendar elements (are there bootstrap elements for this?)

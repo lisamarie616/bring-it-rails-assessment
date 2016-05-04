@@ -129,10 +129,11 @@
         $('#event-end-time').text(anEvent.end);
         $("#prev-event").attr("data-id", anEvent.id);
         $("#next-event").attr("data-id", anEvent.id);
+        $("#edit-button").attr("data-id", anEvent.id);
         if (currentUserId === anEvent.host.id){
-          $("#edit-delete-buttons").show();
+          $("#edit-button").show();
         } else {
-          $("#edit-delete-buttons").hide();
+          $("#edit-button").hide();
         }
       });
     }
@@ -144,10 +145,14 @@
     });
 
     $("#prev-event").click(function() {
-      // var prevId = parseInt($("#prev-event").attr("data-id")) - 1;
       var currentId = parseInt($("#next-event").attr("data-id"));
       var prevId = getPrevId(currentId);
       getEvent(prevId);
+    });
+
+    $("#edit-button").click(function(){
+      var id = $(this).data("id");
+      window.location.href = "/events/" + id + "/edit"
     });
 
     $("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {

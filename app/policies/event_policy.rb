@@ -1,4 +1,8 @@
 class EventPolicy < ApplicationPolicy
+  def show?
+    user == record.host || record.guests.include?(user)
+  end
+
   def destroy?
     user == record.host
   end

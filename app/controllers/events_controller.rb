@@ -8,6 +8,7 @@ class EventsController < ApplicationController
 
   def show
     @event = load_event
+    authorize @event
     @event_item = @event.event_items.build
     respond_to do |format|
       format.html { render :show }

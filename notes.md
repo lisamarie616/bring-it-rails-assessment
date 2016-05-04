@@ -36,6 +36,7 @@ x clean up styles on event show page
 x add previous and next buttons to event show page
 x add jquery to event show page
 x fix the way event show page is getting the next event, so only the current user's events get cycled through
+x add policy for showing events
 
 * fix edit and delete buttons on event show page so they refer to the right event ID
 * change start time and end time fields to calendar elements (are there bootstrap elements for this?)

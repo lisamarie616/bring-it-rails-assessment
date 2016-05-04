@@ -1,5 +1,11 @@
-<h4><%= event.title %></h4>
-<p><strong>Host:</strong> <%= event.host_name %></p>
-<p><strong>Location:</strong> <%= event.location %></p>
-<p><strong>Start Time:</strong> <%= start_date_helper(event) %></p>
-<p><strong>End Time:</strong> <%= end_date_helper(event) %></p>
+<h4><span id="event-title"><%= event.title %></span>
+  <span id="edit-delete-buttons">
+    <a class="glyphicon glyphicon-edit btn btn-lg"></a>
+    <%#= link_to "", edit_event_path(event), class: "glyphicon glyphicon-edit btn btn-lg" %>
+    <%= link_to "", event_path(event), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove btn btn-lg" %>
+  </span>
+</h4>
+<p><strong>Host:</strong> <span id="event-host"><%= event.host_name %></span></p>
+<p><strong>Location:</strong> <span id="event-location"><%= event.location %></span></p>
+<p><strong>Start Time:</strong> <span id="event-start-time"><%= start_date_helper(event) %></span></p>
+<p><strong>End Time:</strong> <span id="event-end-time"><%= end_date_helper(event) %></span></p>

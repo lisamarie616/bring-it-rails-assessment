@@ -33,7 +33,11 @@ x add event serializer
 x clean up styles on event index page
 x add jquery to render info on event index page and create toggle effect
 x clean up styles on event show page
+x add previous and next buttons to event show page
+x add jquery to event show page
+x fix the way event show page is getting the next event, so only the current user's events get cycled through
 
+* fix edit and delete buttons on event show page so they refer to the right event ID
 * change start time and end time fields to calendar elements (are there bootstrap elements for this?)
 * fix items and emails fields
 * improve views with bootsnipp

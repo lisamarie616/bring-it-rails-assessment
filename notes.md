@@ -41,10 +41,12 @@ x move previous and next buttons above event element
 x fix edit button on event show page so it refers to the correct event; remove delete button from event show page for now
 x add serializers for event_items
 x update assigned items tab to use jquery
+x update unassigned items tab to use jquery
 
 * get remaining tabs on event show page working
 * move event new form to event index page and have it add the new event to the DOM without a refresh
 * move javascript out of html files (index and show)
+
 * fix items and emails fields
-* improve views with bootsnipp
 * change start time and end time fields to calendar elements (are there bootstrap elements for this?)
+* need to fix assigning and unassigning of items so they use jquery rather than triggering refreshes

@@ -134,7 +134,7 @@
         var unassignedItemTemplate = [];
         anEvent.event_items.forEach(function(item){
           if (item.assigned_person == null && item.item != null){
-            unassignedItemTemplate.push("<div style='display:inline-block; padding-right:5px'> <a id='item-button' data-id='" + item.id + "' class='btn btn-info btn-sm'>" + (item.item.name.charAt(0).toUpperCase() + item.item.name.slice(1)) + "</a></div>")
+            unassignedItemTemplate.push("<div style='display:inline-block; padding-right:5px'> <a data-id='" + item.id + "' class='btn btn-info btn-sm item-button'>" + (item.item.name.charAt(0).toUpperCase() + item.item.name.slice(1)) + "</a></div>")
           }
         })
 
@@ -176,7 +176,7 @@
     });
 
     function bindItemButton(){
-      $("#item-button").click(function(){
+      $(".item-button").click(function(){
         var eventId = parseInt($("#current-event").attr("data-id"));
         var id = $(this).data("id");
         $.ajax({

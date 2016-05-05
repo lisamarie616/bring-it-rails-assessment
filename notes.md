@@ -44,10 +44,11 @@ x update assigned items tab to use jquery
 x update unassigned items tab to use jquery
 x update guests tab to use jquery
 x fix item button to refer to event item id not item id
+x move event new form to event index page and have it add the new event to the DOM without a refresh
 
-* move event new form to event index page and have it add the new event to the DOM without a refresh
 * move javascript out of html files (index and show)
 
 * fix items and emails fields
 * change start time and end time fields to calendar elements (are there bootstrap elements for this?)
 * need to fix assigning and unassigning of items so they use jquery rather than triggering refreshes
+* have assigned and unassigned items be sorted when using jquery; fix capitalization of items

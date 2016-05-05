@@ -4,6 +4,7 @@ class EventsController < ApplicationController
   def index
     @hosted_events = current_user.hosted_events
     @invited_events = current_user.invited_events
+    @event = Event.new
   end
 
   def show
@@ -29,7 +30,10 @@ class EventsController < ApplicationController
     @event = current_user.hosted_events.build(event_params)
     if @event.save
       flash[:success] = "Your event was successfully created!"
-      redirect_to event_path(@event)
+      respond_to do |format|
+        format.html { redirect_to event_path(@event) }
+        format.json { render json: @event }
+      end
     else
       render :new
     end

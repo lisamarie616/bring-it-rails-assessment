@@ -25,20 +25,16 @@
     <div class="tab-content">
       <div class="tab-pane fade in active" id="tab1">
         <% if @hosted_events.size.zero? %>
-          <div class="col-sm-12">
-            <p>You aren't hosting anything yet. Get a party started by clicking "Create New Event"!</p>
-          </div>
+          <h4>You aren't hosting anything yet. Get a party started by clicking "Show/Hide New Event Form"!</h4>
         <% else %>
-          <div class="row">
+          <div class="row" id="hosted-events">
             <%= render @hosted_events %>
           </div>
         <% end %>
       </div>
       <div class="tab-pane fade in" id="tab2">
         <% if @invited_events.size.zero? %>
-          <div class="col-sm-12">
-            <p>No upcoming events</p>
-          </div>
+          <h4>No upcoming events</h4>
         <% else %>
           <div class="row">
             <%= render @invited_events %>
@@ -47,6 +43,12 @@
       </div>
     </div>
   </div>
+  <button class="btn btn-primary" id="show-new-form">Show/Hide New Event Form</button>
+</div>
+
+<div class="col-sm-8" id="new-form">
+  <h1 class="page-header">New Event</h1>
+  <%= render 'form' %>
 </div>
 
 <script>
@@ -56,12 +58,41 @@ $(function() {
     $(this).removeClass("btn-default").addClass("btn-primary");   
   });
 
-  $(".expand-event-index").click(function(){
-    var id = $(this).data("id");
-    $('#event-index-details-' + id).toggle(100);
-    $.get("/events/" + id + ".json", function(data){
-      $('#location-' + id).html(data["event"]["location"]);
+  function bindEvent(){
+    $(".expand-event-index").click(function(){
+      var id = $(this).data("id");
+      $('#event-index-details-' + id).toggle(100);
+      $.get("/events/" + id + ".json", function(data){
+        $('#location-' + id).html(data["event"]["location"]);
+      });
     });
-  });
+  }
+  bindEvent();
+
+  $("#show-new-form").click(function(){
+    $("#new-form").toggle();
+  })
+
+  $("#new_event").submit(function(e){
+    $.ajax({
+      method: "POST",
+      url: "/events",
+      data: $(this).serialize(),
+      dataType: "json"
+    })
+      .done(function(data) {
+        var template = createEventTemplate(data.event.id, data.event.title, data.event.start_time);
+        $("#hosted-events").append(template);
+        bindEvent();
+        $("#new-form").hide();
+      });
+
+    e.preventDefault();
+  })
+
+  function createEventTemplate(eventId, title, start){
+    return "<div class='col-sm-4 expand-event-index' data-id='" + eventId + "'><div class='panel panel-default'><div class='panel-body'><h4>" + title + "</h4><p>on " + start + "</p></div><div class='panel-footer'><div id='event-index-details-" + eventId + "' style='display: none'><p><strong>Location:</strong> <span id='location-" + eventId + "'></span></p><ul class='list-inline'><li><a class='btn btn-sm btn-default' href='/events/" + eventId + "'>Details</a></li><li><a class='btn btn-sm btn-default' href='/events/" + eventId + "/edit'>Edit</a></li><li><a data-confirm='Are you sure?' class='btn btn-sm btn-default' rel='nofollow' data-method='delete' href='/events/" + eventId + "'>Delete</a></li></ul></div></div></div></div>"
+  }
+
 });
 </script>

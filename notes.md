@@ -43,6 +43,7 @@ x add serializers for event_items
 x update assigned items tab to use jquery
 x update unassigned items tab to use jquery
 x update guests tab to use jquery
+x fix item button to refer to event item id not item id
 
 * move event new form to event index page and have it add the new event to the DOM without a refresh
 * move javascript out of html files (index and show)

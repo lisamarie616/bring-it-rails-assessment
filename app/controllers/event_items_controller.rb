@@ -4,10 +4,7 @@ class EventItemsController < ApplicationController
     @event = load_event
     @event_item = load_event_item
     @event_item.update(assigned_person: current_user)
-    respond_to do |format|
-      format.html { redirect_to event_path(@event) }
-      format.json { render json: @event_item }
-    end
+    render json: @event_item
   end
 
   def unassign
